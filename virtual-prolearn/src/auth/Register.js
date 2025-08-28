@@ -125,16 +125,16 @@ const Register = () => {
             <div className=" w-100 mt-sm-5 px-lg-3 px-5 ">
                 <div className="mb-3 d-flex flex-column">
                     <div className="d-none d-sm-block">
-                        <img src="../../img/logo.21564628.svg" />
+                        <img src="../../img/logo.21564628.svg" alt="img"/>
                     </div>
                     <div className="d-none d-sm-block">
                         <h1 className="roboto fw-bold">Create Your Account</h1>
                     </div>
                     <div className="d-block d-sm-none">
-                        <img src="../../img/signup-banner-small.cefbd556.svg" className="signup-small-top-img" />
+                        <img src="../../img/signup-banner-small.cefbd556.svg" className="signup-small-top-img" alt="img"/>
                     </div>
                     <div>
-                        <img src="../../img/signupLabel.0733dd0e.svg" className="signup-img" />
+                        <img src="../../img/signupLabel.0733dd0e.svg" className="signup-img"alt="img" />
                     </div>
                 </div>
                 <form onSubmit={submit}  >
@@ -213,7 +213,7 @@ const Register = () => {
                 </form>
             </div>
             <div className="d-none d-lg-block">
-                <img src="../../img/signup-banner.png" />
+                <img src="../../img/signup-banner.png" alt="img"/>
             </div>
         </div>
     )

@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { authFetch } from "../auth/Auth";
 const Biophoto = () => {
     const [preview, setPreview] = useState(null); // start with null
-    const [uploading, setUploading] = useState(false);
-    const [uploadError, setUploadError] = useState("");
-    const [uploadSuccess, setUploadSuccess] = useState("");
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -53,9 +50,6 @@ const Biophoto = () => {
         const formData = new FormData();
         formData.append("avatar", file); // 'avatar' is the field name your backend expects
 
-        setUploading(true);
-        setUploadError("");
-        setUploadSuccess("");
 
         try {
             const res = await authFetch("http://localhost:8000/api/upload-avatar/", {
@@ -68,11 +62,8 @@ const Biophoto = () => {
 
             const data = await res.json();
             if (!res.ok) throw new Error(data.message || "Upload failed");
-            setUploadSuccess("Avatar uploaded successfully!");
         } catch (err) {
-            setUploadError(err.message || "Upload failed");
         } finally {
-            setUploading(false);
         }
     };
 
@@ -84,7 +75,7 @@ const Biophoto = () => {
                     <div className="bord-img border-1 border-dotted border-secondary mx-auto d-flex align-items-center justify-content-center bg-white bio-up bio-photo"
                         onClick={() => document.getElementById("biophoto").click()}>
                         {preview ? (<img src={preview} alt="Preview" className="img-fluid object-fit-cover w-100 h-100" />)
-                            : (<span className="text-secondary  ">+<br />Instructor<br/>Photo<br/>(.png, .jpg)</span>)}
+                            : (<span className="text-secondary  ">+<br />Instructor<br />Photo<br />(.png, .jpg)</span>)}
                         {/* Hidden file input */}
                         <input type="file" accept="image/*" id="biophoto" className="d-none" onChange={handleImageChange} />
                     </div>

@@ -229,7 +229,7 @@ const Homepage = () => {
             <section>
                 <div className='back-five d-flex flex-row align-items-center justify-content-center'>
                     <div className='sect-five d-flex flex-column align-items-center justify-content-center position-relative '>
-                        <a href="" className="sect-five-btn text-white text-decoration-none text-center montserrat align-items-center justify-content-center d-inline-flex " >Coming Soon! <FaArrowRight style={{ marginLeft: '14px', transform: 'scaleX(1.5)' }} /> </a>
+                        <a href="#" className="sect-five-btn text-white text-decoration-none text-center montserrat align-items-center justify-content-center d-inline-flex " >Coming Soon! <FaArrowRight style={{ marginLeft: '14px', transform: 'scaleX(1.5)' }} /> </a>
                         <div >
                             <img src="../../img/VPL Logo-Evgenia-xx.avif" style={{ width: "353px" }} />
                         </div>

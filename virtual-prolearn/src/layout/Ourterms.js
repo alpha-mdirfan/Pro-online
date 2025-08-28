@@ -10,7 +10,7 @@ const Ourterms = () => {
                         <h1 className="text-4xl poppins-one fw-bold fs-45 dark-blue">
                             Terms of Use & Privacy Policy
                         </h1>
-                        <img src="../../img/Illustration - Header Terms and Conditions.avif" />
+                        <img src="../../img/Illustration - Header Terms and Conditions.avif" alt="img" />
                     </div>
                 </div>
                 <div className="relative w-full h-[667px] overflow-hidden ">
@@ -418,7 +418,7 @@ const Ourterms = () => {
                     <div className='sect-five d-flex flex-column align-items-center justify-content-center position-relative '>
                         <a href="/register" className="sect-five-btn text-white text-decoration-none text-center montserrat align-items-center justify-content-center d-inline-flex " >Try for Free <FaArrowRight style={{ marginLeft: '14px', transform: 'scaleX(1.5)' }} /> </a>
                         <div >
-                            <img src="../../img/VPL Logo-Evgenia-xx.avif" style={{ width: "353px" }} />
+                            <img src="../../img/VPL Logo-Evgenia-xx.avif" style={{ width: "353px" }} alt="img" />
                         </div>
                         <div className='sect-five-font bg-white'>
                             <div>

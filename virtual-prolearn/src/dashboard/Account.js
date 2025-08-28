@@ -3,9 +3,10 @@ import Dashnav from "./Dashnav"
 import Imgup from "./Imageupload"
 import { AuthContext } from "../context/Authcontext";
 import { authFetch } from "../auth/Auth";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Biophoto from "./Biophoto";
+import { SketchPicker } from 'react-color';
 const Account = () => {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -29,14 +30,10 @@ const Account = () => {
     const [aboutCompany, setAboutCompany] = useState("");
 
     const [color, setColor] = useState("#ffffff"); // initial div color
-    const colorInputRef = useRef(null);
+    const [showColorPicker, setShowColorPicker] = useState(false);
 
-    const handleButtonClick = () => {
-        colorInputRef.current.click(); // trigger the hidden color input
-    };
-
-    const handleColorChange = (e) => {
-        setColor(e.target.value); // update div color
+    const handleColorChange = (color) => {
+        setColor(color.hex); // update div color
     };
 
     const { logout } = useContext(AuthContext);
@@ -225,16 +222,43 @@ const Account = () => {
                 </div>
                 <div className="card mb-3">
                     <div className="card-body p-0">
-                        <div className="d-flex flex-row justify-content-end pt-2 pb-10 strong-blue px-2 top-radius" style={{ backgroundColor: color }}>
-                            <button type="button" className="roboto bg-white bord-bill d-flex align-items-center gap-2 px-3 position-relative"
-                                onClick={handleButtonClick} >
+                        <div className="d-flex flex-column align-items-end pt-2 pb-10 strong-blue px-2 top-radius" style={{ backgroundColor: color }}>
+                            <button
+                                type="button"
+                                className="roboto bg-white bord-bill d-flex align-items-center gap-2 px-3 position-relative mb-2"
+                                onClick={() => setShowColorPicker(!showColorPicker)}
+                                style={{
+                                    padding: "8px 12px",
+                                    border: "none",
+                                    borderRadius: "4px",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "8px",
+                                    position: "relative",
+                                    marginBottom: "8px"
+                                }}
+                            >
                                 <span style={{
-                                    width: "16px", height: "16px", borderRadius: "50%", backgroundColor: color, border: "1px solid #ccc",
-                                    display: "inline-block",
+                                    width: "16px",
+                                    height: "16px",
+                                    borderRadius: "50%",
+                                    backgroundColor: color,
+                                    border: "1px solid #ccc",
+                                    display: "inline-block"
                                 }} />
-                                Select Color</button>
-                            {/* hidden color input */}
-                            <input type="color" ref={colorInputRef} onChange={handleColorChange} style={{ display: "none" }} />
+                                Select Color
+                            </button>
+                            {showColorPicker && (
+                                <div className="position-absolute" style={{ zIndex: 1000, top: "60px", right: "0" }}>
+                                    <div className="position-relative">
+                                        <SketchPicker
+                                            color={color}
+                                            onChange={handleColorChange}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
                         <Imgup preview_image={avatar} firstName={firstName} lastName={lastName} />
                     </div>

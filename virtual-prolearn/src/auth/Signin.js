@@ -115,16 +115,16 @@ const Signin = () => {
                 <div className=" mt-5 col-12 col-lg-6 gap-10 px-5 ">
                     <div className="mb-3">
                         <div className="mb-3 d-block d-sm-none ">
-                            <img src="../../img/new-login-banner.ef5236ac.png" className="signin-top-img" />
+                            <img src="../../img/new-login-banner.ef5236ac.png" className="signin-top-img"  alt="img"/>
                         </div>
                         <div className="mb-3">
-                            <img src="../../img/logo.21564628.svg" className="signup-img" />
+                            <img src="../../img/logo.21564628.svg" className="signup-img" alt="img"/>
                         </div>
                         <div className="mb-3">
                             <h1 className="roboto fw-bold signin-welcome">Welcome</h1>
                         </div>
                         <div className="mb-5">
-                            <img src="../../img/signin-label.0d954d20.svg" className="signup-img" />
+                            <img src="../../img/signin-label.0d954d20.svg" className="signup-img" alt="img"/>
                         </div>
                     </div>
                     <form onSubmit={signin} >
@@ -165,7 +165,7 @@ const Signin = () => {
                     </form>
                 </div>
                 <div className="col-12 col-lg-6 mt-5 d-none d-lg-block px-22">
-                    <img src="../../img/new-login-banner.ef5236ac.png" className="img-fluid signin-img" />
+                    <img src="../../img/new-login-banner.ef5236ac.png" className="img-fluid signin-img" alt="img"/>
                 </div>
             </div>
         </div>

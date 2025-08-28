@@ -2,7 +2,7 @@ const Secttwocom = ({ image, title, contents, more }) => {
     return (
         <div style={styles.box} className="d-flex flex-column align-items-center justify-content-center position-relative gap-3">
             <div >
-                <img src={image} />
+                <img src={image} alt="img" />
             </div>
             <div style={styles.boxone} className="text-center">
                 <span style={styles.title} className="poppins fw-bold">{title}</span>

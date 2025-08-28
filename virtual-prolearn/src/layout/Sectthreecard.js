@@ -2,7 +2,7 @@ const Sectthreecard = ({ image, title, contents }) => {
     return (
         <div className=" p-4 d-flex flex-column align-items-center justify-content-center bg-white gap-2 sect-three-box">
             <div>
-                <img src={image} />
+                <img src={image} alt="img" />
             </div>
             <div className="text-center poppins fw-bold">
                 <span style={styles.title}>{title}</span>
