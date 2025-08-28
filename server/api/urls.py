@@ -1,7 +1,5 @@
 from .views import RegisterView, MeView, ProtectedView,ChangePasswordView,DeleteAccountView, AvatarUploadView,CreateGrowthSubscriptionView, SubscriptionView ,ChangeNameView
 from django.urls import path
-from django.conf import settings           # ✅ import settings
-from django.conf.urls.static import static # ✅ import static
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -15,5 +13,4 @@ urlpatterns = [
     path("change-name/", ChangeNameView.as_view(), name="change-name"),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -13,7 +13,6 @@ const Billing = () => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
-        console.log("Profile:", data);
 
         setActivePlan(data.active_plan);
     };
@@ -74,7 +73,7 @@ const Billing = () => {
                         </ul>
                     </div>
                     <div className="tab-content" id="pills-tabContent">
-                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                             <div className="row row-cols-1 row-cols-md-4 g-4 mt-1">
                                 <div className="col">
                                     <div className="card h-100 border-0">
@@ -160,7 +159,7 @@ const Billing = () => {
                                 </div>
                                 <div className="col">
                                     <div className="card h-100 bg-light-purple border-0">
-                                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-light-dark py-2 px-5 fs-6 roboto">
+                                        <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-light-dark py-2 px-5 fs-6 roboto">
                                             Most Popular
                                         </span>
                                         <div className="mt-3 px-3">
@@ -244,7 +243,7 @@ const Billing = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
                             <div className="row row-cols-1 row-cols-md-4 g-4">
                                 <div className="col">
                                     <div className="card h-100 border-0">

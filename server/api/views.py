@@ -101,13 +101,34 @@ class RegisterView(APIView):
     
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request):
         user = request.user
-        
+        profile, created = Profile.objects.get_or_create(user=user)
+
+        # Check active subscription
+        active_plan = None
+        if profile.stripe_customer_id:
+            try:
+                subs = stripe.Subscription.list(
+                    customer=profile.stripe_customer_id,
+                    status="active",
+                    limit=1
+                )
+                if subs.data:
+                    active_plan = subs.data[0]["items"]["data"][0]["price"]["id"]
+            except Exception as e:
+                print("Stripe error:", e)
+
         return Response({
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
+            "avatar": request.build_absolute_uri(profile.avatar.url) if profile.avatar else None,
+            "stripe_customer_id": profile.stripe_customer_id,
+            "subscription_id": profile.subscription_id,
+            "subscription_status": profile.subscription_status,
+            "active_plan": active_plan,
         })
 
 class ProtectedView(APIView):

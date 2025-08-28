@@ -23,6 +23,7 @@ const Account = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [avatar, setAvatar] = useState("");
 
     const [color, setColor] = useState("#ffffff"); // initial div color
     const colorInputRef = useRef(null);
@@ -64,6 +65,7 @@ const Account = () => {
                 setFirstName(data.first_name);
                 setLastName(data.last_name);
                 setEmail(data.email);
+                setAvatar(data.avatar)
             } catch (err) {
                 console.error(err.message);
             }
@@ -184,7 +186,7 @@ const Account = () => {
                 onChange={(e) => setValue(e.target.value)}
             />
             <i
-                className={`bi position-absolute pass-icon ${show ? "bi-eye-slash-fill" : "bi-eye-fill"}`}
+                className={`bi position-absolute pass-icon ${show ? "bi-eye-fill" : "bi-eye-slash-fill"}`}
                 onClick={() => setShow(!show)}
                 style={{ right: "10px", top: "65%", transform: "translateY(-50%)", cursor: "pointer" }}
             ></i>
@@ -200,8 +202,8 @@ const Account = () => {
                 <div className=" mb-4 mt-10">
                     <span className="fs-4 fw-bold roboto">Update Profile</span>
                 </div>
-                <div class="card mb-3">
-                    <div class="card-body p-0">
+                <div className="card mb-3">
+                    <div className="card-body p-0">
                         <div className="d-flex flex-row justify-content-end pt-2 pb-10 strong-blue px-2 top-radius" style={{ backgroundColor: color }}>
                             <button type="button" className="roboto bg-white bord-bill d-flex align-items-center gap-2 px-3 position-relative"
                                 onClick={handleButtonClick} >
@@ -213,7 +215,7 @@ const Account = () => {
                             {/* hidden color input */}
                             <input type="color" ref={colorInputRef} onChange={handleColorChange} style={{ display: "none" }} />
                         </div>
-                        <Imgup />
+                        <Imgup preview_image={avatar} firstName={firstName} lastName={lastName} />
                     </div>
                 </div>
                 <div>
@@ -228,7 +230,7 @@ const Account = () => {
                         </ul>
                     </div>
                     <div className="tab-content" id="pills-tabContent">
-                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                             <div className="card h-100 py-4">
                                 <div className="card-body">
                                     <h5 className="card-title roboto">Company/Online School Name *</h5>
@@ -275,7 +277,7 @@ const Account = () => {
                             </div>
                         </div>
                         {/*  */}
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
                             <div className="card h-100">
                                 <div className="card-body">
                                     <h5 className="card-title roboto mb-4">Change Password</h5>

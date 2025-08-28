@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { authFetch } from "../auth/Auth";
-const Imgup = () => {
-    const [preview, setPreview] = useState(null); // start with null
+const Imgup = ({ preview_image, firstName: incomingFirstName, lastName: incomingLastName }) => {
+    const [preview, setPreview] = useState(""); // start with null
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [uploading, setUploading] = useState(false);
@@ -9,21 +9,10 @@ const Imgup = () => {
     const [uploadSuccess, setUploadSuccess] = useState("");
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const res = await authFetch("http://localhost:8000/api/me/");
-                const data = await res.json();
-                if (!res.ok) throw new Error("Failed to fetch user data");
-                setFirstName(data.first_name);
-                setLastName(data.last_name);
-                if (data.avatar) setPreview(data.avatar); // existing avatar
-            } catch (err) {
-                console.error(err.message);
-            }
-        };
-
-        fetchUserData();
-    }, []);
+        setFirstName(incomingFirstName || "");
+        setLastName(incomingLastName || "");
+        setPreview(preview_image || "");
+    }, [incomingFirstName, incomingLastName, preview_image]);
 
     function getCookie(name) {
         let cookieValue = null;
@@ -97,7 +86,7 @@ const Imgup = () => {
                 <div >
                     <p className="ml-5 roboto fs-5 fw-bold my-0"> {firstName + " " + lastName}</p>
                     <span className="roboto d-block cursor-pointer pb-5" onClick={() => document.getElementById("imageUpload").click()} >
-                        <i class="bi bi-pencil font-14"></i>Add Logo or Avatar
+                        <i className="bi bi-pencil font-14"></i>Add Logo or Avatar
                     </span>
                     {uploading && <p className="roboto text-info">Uploading...</p>}
                     {uploadError && <p className="roboto text-danger">{uploadError}</p>}

@@ -127,7 +127,7 @@ const Homepage = () => {
             <section className="py-5">
                 {/* Section Header */}
                 <div className="text-center mb-5 secttwo">
-                    <h1 class="poppins">Reach Every Audience</h1>
+                    <h1 className="poppins">Reach Every Audience</h1>
                     <p className="text-19 poppins mt-4 sec-des d-flex flex-row justify-content-center align-items-center">
                         The sky is the limit for how this easy-to-use course creation<br /> software can be used. Here are four main uses of Virtual Pro Learn:
                     </p>

@@ -79,13 +79,8 @@ class ChangePasswordSerializer(serializers.Serializer):
         user.save()
         return user
     
-class AvatarUploadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ['avatar']  # Make sure your User model has an avatar ImageField
-        
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ["subscription_status", "stripe_customer_id"]
+        fields = ["subscription_status", "stripe_customer_id", "avatar"]
         
