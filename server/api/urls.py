@@ -1,4 +1,4 @@
-from .views import RegisterView, MeView, ProtectedView,ChangePasswordView,DeleteAccountView, AvatarUploadView,CreateGrowthSubscriptionView, SubscriptionView ,ChangeNameView
+from .views import RegisterView, MeView, ProtectedView,ChangePasswordView,DeleteAccountView, AvatarUploadView,CreateGrowthSubscriptionView, SubscriptionView ,ChangeNameView,UpdateProfileView
 from django.urls import path
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path("create-growth-subscription/", CreateGrowthSubscriptionView.as_view(), name="create-growth-subscription"),
     path("profile/", SubscriptionView.as_view(), name="user-profile"),
     path("change-name/", ChangeNameView.as_view(), name="change-name"),
+    path("update-profile/", UpdateProfileView.as_view(), name="update-profile"),
 ]
 
 

@@ -9,6 +9,11 @@ class Profile(models.Model):
     stripe_customer_id = models.CharField(max_length=255, blank=True, null=True)
     subscription_id = models.CharField(max_length=255, blank=True, null=True)
     subscription_status = models.CharField(max_length=50, default="inactive")
-
+    
+    # New fields
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+    about_company = models.TextField(blank=True, null=True)
+    
+    
     def __str__(self):
         return f"{self.user.username}"

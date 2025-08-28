@@ -25,6 +25,9 @@ const Account = () => {
     const [email, setEmail] = useState("");
     const [avatar, setAvatar] = useState("");
 
+    const [companyName, setCompanyName] = useState("");
+    const [aboutCompany, setAboutCompany] = useState("");
+
     const [color, setColor] = useState("#ffffff"); // initial div color
     const colorInputRef = useRef(null);
 
@@ -66,6 +69,8 @@ const Account = () => {
                 setLastName(data.last_name);
                 setEmail(data.email);
                 setAvatar(data.avatar)
+                setCompanyName(data.company_name || "");   // ✅
+                setAboutCompany(data.about_company || ""); // ✅
             } catch (err) {
                 console.error(err.message);
             }
@@ -170,6 +175,22 @@ const Account = () => {
             setMessage("Name, Password change updated successfully!");
             setIsSuccess(true);
 
+            // 🔹 3. Update company info
+            const profileRes = await authFetch("http://localhost:8000/api/update-profile/", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    company_name: companyName,
+                    about_company: aboutCompany,
+                }),
+            });
+
+            const profileData = await profileRes.json();
+            if (!profileRes.ok) {
+                const firstError = Object.values(profileData)[0];
+                throw new Error(Array.isArray(firstError) ? firstError[0] : firstError);
+            }
+
         } catch (err) {
             setMessage(err.message);
             setIsSuccess(false);
@@ -234,9 +255,20 @@ const Account = () => {
                             <div className="card h-100 py-4">
                                 <div className="card-body">
                                     <h5 className="card-title roboto">Company/Online School Name *</h5>
-                                    <input type="text" placeholder="Online School Name or your name or your business" className="form-control form-control-lg roboto bg-gray mb-4" />
+                                    <input
+                                        type="text"
+                                        placeholder="Online School Name or your name or your business"
+                                        className="form-control form-control-lg roboto bg-gray mb-4"
+                                        value={companyName}
+                                        onChange={(e) => setCompanyName(e.target.value)}
+                                    />
                                     <p className="card-text roboto fs-6 fw-bold">About Company/Online School</p>
-                                    <textarea rows={4} className='form-control p-2 poppins text-area-nonresize bg-gray' /> <hr />
+                                    <textarea
+                                        rows={4}
+                                        className='form-control p-2 poppins text-area-nonresize bg-gray'
+                                        value={aboutCompany}
+                                        onChange={(e) => setAboutCompany(e.target.value)}
+                                    /> <hr />
                                     <h5 className="card-title roboto mb-4">Instructor Information</h5>
                                     <div className="row row-cols-1 row-cols-md-2 g-4">
                                         <div>

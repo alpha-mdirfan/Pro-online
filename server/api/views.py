@@ -129,6 +129,8 @@ class MeView(APIView):
             "subscription_id": profile.subscription_id,
             "subscription_status": profile.subscription_status,
             "active_plan": active_plan,
+            "about_company": profile.about_company,
+            "company_name": profile.company_name,
         })
 
 class ProtectedView(APIView):
@@ -184,3 +186,19 @@ class ChangeNameView(APIView):
 
         user.save()
         return Response({"first_name": user.first_name, "last_name": user.last_name})
+    
+class UpdateProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request):
+        profile = request.user.profile
+        company_name = request.data.get("company_name")
+        about_company = request.data.get("about_company")
+
+        if company_name is not None:
+            profile.company_name = company_name
+        if about_company is not None:
+            profile.about_company = about_company
+
+        profile.save()
+        return Response(ProfileSerializer(profile).data)

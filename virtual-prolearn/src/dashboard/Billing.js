@@ -92,7 +92,7 @@ const Billing = () => {
                                                 </h5>
                                             )}
                                             <p className="card-text roboto fs-6 fw-bold mb-1">What's Included</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Easy to use, no code needed</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> All Creator Features Unlocked</li>
@@ -115,7 +115,7 @@ const Billing = () => {
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Free Customer Support</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Forever Access</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Starter Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Unlimited Students</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 1GB Per Upload Limit on Videos</li>
@@ -153,7 +153,7 @@ const Billing = () => {
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 6% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 2 Published (active) Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -186,13 +186,13 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Growth Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 3GB Per Upload Limit on Videos</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 3% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 10 Published (active) Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,13 +222,13 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Mastery Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 5GB Per Upload Limit on Videos</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 0% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Unlimited Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@ const Billing = () => {
                                         </div>
                                         <div className="card-body">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">What's Included</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Easy to use, no code needed</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> All Creator Features Unlocked</li>
@@ -276,7 +276,7 @@ const Billing = () => {
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Free Customer Support</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Forever Access</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -306,7 +306,7 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Starter Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Unlimited Students</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 1GB Per Upload Limit on Videos</li>
@@ -314,7 +314,7 @@ const Billing = () => {
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 6% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 2 Published (active) Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -344,13 +344,13 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Growth Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 3GB Per Upload Limit on Videos</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 3% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 10 Published (active) Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -380,13 +380,13 @@ const Billing = () => {
                                         )}
                                         <div className="mt-3 px-3">
                                             <p className="card-text roboto fs-6 fw-bold mb-1">Everything in the Mastery Tier plus:</p>
-                                            <p className="card-text roboto text-secondary font-14 ">
+                                            <div className="card-text roboto text-secondary font-14 ">
                                                 <ul className="p-0 list-unstyled">
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 5GB Per Upload Limit on Videos</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> 0% Transaction Fees</li>
                                                     <li><i className="bi bi-check-lg text-dark fs-6 "></i> Unlimited Course</li>
                                                 </ul>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

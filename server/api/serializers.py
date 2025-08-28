@@ -82,5 +82,8 @@ class ChangePasswordSerializer(serializers.Serializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ["subscription_status", "stripe_customer_id", "avatar"]
+        fields = ["subscription_status", "stripe_customer_id", "avatar",
+                    "company_name",          # ✅ new
+                    "about_company", 
+                  ]
         
