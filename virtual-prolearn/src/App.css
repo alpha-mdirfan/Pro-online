@@ -431,10 +431,15 @@
   height: auto;
 }
 
+.side-build {
+  width: 186px !important;
+}
+
 .main-content {
   margin-left: 220px;
   margin-top: 50px;
-  padding-top: 50px;
+  padding-top: 20px;
+  padding-left: 100px;
 }
 
 .custom-navbar {
@@ -787,4 +792,16 @@
   background-color: #F3F3F3 !important;
   /* change to any color you like */
   cursor: pointer;
+}
+
+.pt-100 {
+  padding-top: 100px !important;
+}
+
+.pb-100 {
+  padding-bottom: 100px !important;
+}
+
+.pb-20 {
+  padding-bottom: 20px !important;
 }

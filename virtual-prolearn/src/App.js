@@ -13,6 +13,11 @@ import Home from './dashboard/Home';
 import Billing from './dashboard/Billing';
 import Account from './dashboard/Account';
 import Success from './dashboard/Success';
+import Courses from './dashboard/Courses';
+import CourseEdit from './dashboard/CourseEdit';
+import CourseDetail from './dashboard/CourseDetail';
+import Sessions from './dashboard/Sessions';
+import Modules from './dashboard/Modules';
 const App = () => {
   return (
     <AuthProvider>
@@ -27,6 +32,12 @@ const App = () => {
           <Route path='/billing' element = {<PrivateRoute><Billing/></PrivateRoute>}></Route>
           <Route path='/account' element = {<PrivateRoute><Account/></PrivateRoute>}></Route>
           <Route path='/success' element = {<PrivateRoute><Success/></PrivateRoute>}></Route>
+          <Route path='/build/courses' element = {<PrivateRoute><Courses/></PrivateRoute>}></Route>
+          <Route path='/build/course/edit' element = {<PrivateRoute><CourseEdit/></PrivateRoute>}></Route>
+          <Route path='/build/course/:id' element = {<PrivateRoute><CourseDetail/></PrivateRoute>}></Route>
+
+          <Route path='/build/sessions' element = {<PrivateRoute><Sessions/></PrivateRoute>}></Route>
+          <Route path='/build/modules' element = {<PrivateRoute><Modules/></PrivateRoute>}></Route>
         </Routes>
       </Router>
     </AuthProvider>

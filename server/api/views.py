@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, permissions
+from rest_framework import status, permissions, generics
 from .serializers import RegisterSerializer, UserOutSerializer
 from rest_framework.permissions import IsAuthenticated
 from .serializers import ChangePasswordSerializer
@@ -10,8 +10,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import stripe
 # import json
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Course
+from .serializers import ProfileSerializer, CourseSerializer
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -202,3 +202,23 @@ class UpdateProfileView(APIView):
 
         profile.save()
         return Response(ProfileSerializer(profile).data)
+       
+class CourseView(generics.ListCreateAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Course.objects.filter(user=self.request.user).order_by("-created_at")
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        
+    def get_serializer_context(self):
+        return {"request": self.request}
+    
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Course.objects.filter(user=self.request.user)

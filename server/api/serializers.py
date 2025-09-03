@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, Course
 
 class RegisterSerializer(serializers.Serializer):
     first_name = serializers.CharField(max_length=150)
@@ -87,3 +87,24 @@ class ProfileSerializer(serializers.ModelSerializer):
                     "about_company", 
                   ]
         
+class CourseSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Course
+        fields = [
+                    "id",
+                    "title",       
+                    "info",
+                    "description",
+                    "image",
+                    "image_url",   # ✅ include it here
+                    "created_at",
+                  ]
+        read_only_fields = ["user", "created_at"]
+        
+    def get_image_url(self, obj):
+        request = self.context.get("request")
+        if obj.image and request:
+            return request.build_absolute_uri(obj.image.url)
+        return None
