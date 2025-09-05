@@ -1,15 +1,16 @@
 import Side from "./Side"
 import Dashnav from "./Dashnav"
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import { authFetch } from "../auth/Auth";
 import { useNavigate } from "react-router-dom";
-const CourseEdit = () => {
+const CourseCreate = () => {
     // Form state
     const [title, setTitle] = useState("");
     const [info, setInfo] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState(null);
+
     const navigate = useNavigate();
 
     const handleImageUpload = (e) => {
@@ -98,4 +99,4 @@ const CourseEdit = () => {
     )
 }
 
-export default CourseEdit
+export default CourseCreate

@@ -1,4 +1,4 @@
-from .views import RegisterView, MeView, ProtectedView,ChangePasswordView,DeleteAccountView, AvatarUploadView,CreateGrowthSubscriptionView, SubscriptionView ,ChangeNameView,UpdateProfileView, CourseView, CourseDetailView
+from .views import RegisterView, MeView, ProtectedView,ChangePasswordView,DeleteAccountView, AvatarUploadView,CreateGrowthSubscriptionView, SubscriptionView ,ChangeNameView,UpdateProfileView, CourseView, CourseDetailView, CourseImageCopyView, CoursePublishToggleView
 from django.urls import path
 
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     path("update-profile/", UpdateProfileView.as_view(), name="update-profile"),
     path("course/", CourseView.as_view(), name="course"),
     path("course/<int:pk>/", CourseDetailView.as_view(), name="course-detail"),
+    path("course/<int:pk>/copy/", CourseImageCopyView.as_view(), name="course-image-copy"),
+    path("course/<int:pk>/publish-toggle/", CoursePublishToggleView.as_view(), name="course-publish-toggle"),
 ]
 
 

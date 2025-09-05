@@ -100,6 +100,8 @@ class CourseSerializer(serializers.ModelSerializer):
                     "image",
                     "image_url",   # ✅ include it here
                     "created_at",
+                    "views",
+                    "published",
                   ]
         read_only_fields = ["user", "created_at"]
         

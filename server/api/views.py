@@ -6,12 +6,11 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import ChangePasswordSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.conf import settings
-# from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 import stripe
 # import json
 from .models import Profile, Course
 from .serializers import ProfileSerializer, CourseSerializer
+from django.shortcuts import get_object_or_404
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -222,3 +221,35 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Course.objects.filter(user=self.request.user)
+    
+class CourseImageCopyView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        try:
+            original = Course.objects.get(pk=pk, user=request.user)
+        except Course.DoesNotExist:
+            return Response({"detail": "Course not found"}, status=404)
+
+        # Duplicate the course including the image reference
+        new_course = Course.objects.create(
+            user=request.user,
+            title=f"{original.title} (Copy)",
+            info=original.info,
+            description=original.description,
+            image=original.image,  # <- keep the same file
+        )
+
+        return Response(CourseSerializer(new_course).data, status=201)
+    
+class CoursePublishToggleView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        course = get_object_or_404(Course, pk=pk, user=request.user)
+        # course = Course.objects.get( pk=pk, user=request.user)
+        course.published = not course.published
+        course.save()
+        serializer = CourseSerializer(course)
+        return Response(serializer.data)
+        # return Response(CourseSerializer(course).data)

@@ -25,6 +25,8 @@ class Course(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="course_images/", null=True, blank=True) 
     created_at = models.DateTimeField(auto_now_add=True)
+    views = models.IntegerField(default=0)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} ({self.user.username})"

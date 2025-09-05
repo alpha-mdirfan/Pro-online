@@ -1,6 +1,7 @@
 import Side from "./Side"
 import Dashnav from "./Dashnav"
-import { FaEye, FaEdit, FaCopy, FaLink, FaUpload, FaTrash, } from "react-icons/fa";
+import { FaEye, FaEdit, FaCopy, FaLink, FaUpload, FaTrash, FaTimes  } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
 import { authFetch } from "../auth/Auth";
@@ -8,6 +9,24 @@ import { useState, useEffect } from "react";
 const Courses = () => {
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
+
+    const CancelButton = ({ closeToast }) => (
+        <button
+            onClick={closeToast}
+            style={{
+                border: "none",
+                background: "transparent",
+                color: "white",
+                fontSize: "14px",
+                cursor: "pointer",
+                position: "absolute",
+                top: "8px",
+                right: "8px",
+            }}
+        >
+            ✖
+        </button>
+    );
 
     const fetchCourses = async () => {
         const res = await authFetch("http://localhost:8000/api/course/", {
@@ -23,6 +42,64 @@ const Courses = () => {
     useEffect(() => {
         fetchCourses();
     }, []);
+
+    const handleDelete = async (id) => {
+        await authFetch(`http://localhost:8000/api/course/${id}/`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access")}`,
+            },
+        });
+        fetchCourses();
+    };
+
+    const handleCopy = async (course) => {
+        await authFetch(`http://localhost:8000/api/course/${course.id}/copy/`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("access")}`,
+            },
+        });
+        fetchCourses();
+    };
+
+    const handlePublishToggle = async (courseId) => {
+        try {
+            const response = await authFetch(`http://localhost:8000/api/course/${courseId}/publish-toggle/`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access")}`,
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const updated = await response.json();
+            const isPublished = updated.published;
+            if (isPublished) {
+                toast("Course published ", {
+                    style: {
+                        backgroundColor: " black",
+                        color: "white",
+                    },
+                    closeButton: < CancelButton />,
+                });
+
+            } else {
+                toast("Course unpublished ", {
+                    style: {
+                        backgroundColor: " black",
+                        color: "white",
+                    },
+                    closeButton: < CancelButton />,
+                });
+            }
+
+        } catch (err) {
+            console.error(err);
+            toast.error("Failed to update publish status.");
+        }
+        fetchCourses();
+    };
 
     return (
         <div className="d-flex">
@@ -74,6 +151,7 @@ const Courses = () => {
                                         <p className="card-text roboto text-secondary">{course.info}</p>
                                         <p className=" small roboto text-purple m-0">{course.description}</p>
                                     </div>
+
                                     {/* ✅ Action icons */}
                                     <div className=" d-flex px-4 pb-20">
                                         <div className="d-flex gap-2 ">
@@ -82,43 +160,53 @@ const Courses = () => {
                                                 title="View"
                                                 onClick={() => navigate(`/build/course/${course.id}`)}
                                             />
-                                            <div className="border-start"/>
+                                            <div className="border-start" />
                                             <FaEdit
                                                 className="text-dark cursor-pointer"
                                                 title="Edit"
-                                                onClick={() => navigate(`/edit/${course.id}`)}
+                                                onClick={() => navigate(`/build/course/${course.id}/edit`)}
                                             />
-                                            <div className="border-start"/>
+                                            <div className="border-start" />
                                             <FaCopy
                                                 className="text-dark cursor-pointer"
                                                 title="Copy"
-                                            // onClick={() => handleCopy(course)}
+                                                onClick={() => handleCopy(course)}
                                             />
-                                            <div className="border-start"/>
+                                            <div className="border-start" />
                                             <FaLink
                                                 className="text-dark cursor-pointer"
                                                 title="Copy Link"
                                                 onClick={() =>
                                                     navigator.clipboard.writeText(
-                                                        `${window.location.origin}/course/${course.id}`
+                                                        `${window.location.origin}/build/course/${course.id}`
                                                     )
                                                 }
                                             />
-                                            <div className="border-start"/>
-                                            <FaUpload
-                                                className="text-dark cursor-pointer"
-                                                title="Publish"
-                                                onClick={() => alert("Publish feature not yet implemented")}
-                                            />
-                                            <div className="border-start"/>
+                                            <div className="border-start" />
+                                            {course.published ? (
+                                                <FaTimes
+                                                    className="text-white cursor-pointer rounded-circle bg-dark "
+                                                    style={{ padding: "3px"}}
+                                                    title="Unpublish"
+                                                    onClick={() => handlePublishToggle(course.id)}
+                                                />
+                                            ) : (
+                                                <FaUpload
+                                                    className="text-dark cursor-pointer"
+                                                    title="Publish"
+                                                    onClick={() => handlePublishToggle(course.id)}
+                                                />
+                                            )}
+
+                                            <div className="border-start" />
                                             <FaTrash
                                                 className="text-dark cursor-pointer"
                                                 title="Delete"
-                                            // onClick={() => handleDelete(course.id)}
+                                                onClick={() => handleDelete(course.id)}
                                             />
-                                            <div className="border-start"/>
+                                            <div className="border-start" />
                                             <div className="text-dark d-flex flex-column align-items-start">
-                                                <span style={{marginTop: "-5px"}}>{course.views || 0}</span>
+                                                <span style={{ marginTop: "-5px" }}>{course.views || 0}</span>
                                             </div>
                                         </div>
                                     </div>
