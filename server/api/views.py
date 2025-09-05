@@ -247,9 +247,7 @@ class CoursePublishToggleView(APIView):
 
     def post(self, request, pk):
         course = get_object_or_404(Course, pk=pk, user=request.user)
-        # course = Course.objects.get( pk=pk, user=request.user)
         course.published = not course.published
         course.save()
         serializer = CourseSerializer(course)
         return Response(serializer.data)
-        # return Response(CourseSerializer(course).data)
